@@ -15,6 +15,7 @@ public class ObjectMapperConfig {
     public ObjectMapper objectMapper() {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
+        objectMapper.setDateFormat(new SafeDateFormat(objectMapper.getDateFormat()));
         objectMapper.configure(FAIL_ON_UNKNOWN_PROPERTIES, false);
         objectMapper.setSerializationInclusion(NON_NULL);
         return objectMapper;

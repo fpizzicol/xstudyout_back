@@ -36,6 +36,15 @@ public class Pais {
         this.tags = (List<String>) doc.get("tags");
     }
 
+    public Pais(Map map) {
+        this.nome = (String) map.get("nome");
+        this.continente = (String) map.get("continente");
+        this.clima = (String) map.get("clima");
+        this.moeda = (String) map.get("moeda");
+        this.descricao = (String) map.get("descricao");
+        this.tags = (List<String>) map.get("tags");
+    }
+
     public Map<String, Object> toMap() {
         Map<String, Object> resp = new HashMap<>();
         resp.put("continente", getContinente());

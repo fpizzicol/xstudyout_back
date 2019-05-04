@@ -1,5 +1,6 @@
 package br.com.hackatur.xtudyout.domain;
 
+import com.google.cloud.Timestamp;
 import com.google.cloud.firestore.DocumentSnapshot;
 import lombok.*;
 import org.apache.commons.lang3.StringUtils;
@@ -40,6 +41,17 @@ public class Orcamento {
         this.valorMoradia = doc.getDouble("valorMoradia");
         this.dataOrcamento = doc.getDate("dataOrcamento");
         this.valorServicos = doc.getDouble("valorServicos");
+    }
+
+    public Orcamento(Map map) {
+        this.valorTotal = (Double) map.get("valorTotal");
+        this.valorCurso = (Double) map.get("valorCurso");
+        this.taxas = (Double) map.get("taxas");
+        this.valorMatricula = (Double) map.get("valorMatricula");
+        this.periodo = ((Long) map.get("periodo")).intValue();
+        this.valorMoradia = (Double) map.get("valorMoradia");
+        this.dataOrcamento = ((Timestamp) map.get("dataOrcamento")).toDate();
+        this.valorServicos = (Double) map.get("valorServicos");
     }
 
     public Map<String, Object> toMap() {

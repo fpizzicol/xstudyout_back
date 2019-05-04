@@ -32,7 +32,7 @@ public class Acomodacao {
         this.inicio = doc.getDate("inicio");
         this.fim = doc.getDate("fim");
         this.valor = doc.getDouble("valor");
-        this.pais = (Pais)doc.get("pais");
+        this.pais = new Pais((Map) doc.get("pais"));
     }
 
     public Map<String, Object> toMap(){

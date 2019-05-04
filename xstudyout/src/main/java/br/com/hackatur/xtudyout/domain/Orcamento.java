@@ -1,10 +1,7 @@
 package br.com.hackatur.xtudyout.domain;
 
 import com.google.cloud.firestore.DocumentSnapshot;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigDecimal;
@@ -18,38 +15,19 @@ import java.util.Map;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@RequiredArgsConstructor
 public class Orcamento {
 
     public static String child = "orcamento";
 
     private String documento;
-    private Double valorTotal;
-    private Double taxas;
-    private String curso;
-    private Double valorMatricula;
-    private Integer periodo;
-    private Double valorMoradia;
-    private Date dataOrcamento;
-
-
-    public Orcamento(
-                      Double valorTotal,
-                      Double taxas,
-                      String curso,
-                      Double valorMatricula,
-                      Integer periodo,
-                      Double valorMoradia,
-                      Date dataOrcamento) {
-
-        this.valorTotal = valorTotal;
-        this.taxas = taxas;
-        this.curso = curso;
-        this.valorMatricula = valorMatricula;
-        this.periodo = periodo;
-        this.valorMoradia = valorMoradia;
-        this.dataOrcamento = dataOrcamento;
-
-    }
+    @NonNull private Double valorTotal;
+    @NonNull private Double taxas;
+    @NonNull private String curso;
+    @NonNull private Double valorMatricula;
+    @NonNull private Integer periodo;
+    @NonNull private Double valorMoradia;
+    @NonNull private Date dataOrcamento;
 
     public Orcamento(DocumentSnapshot doc) {
         this.documento = doc.getId();

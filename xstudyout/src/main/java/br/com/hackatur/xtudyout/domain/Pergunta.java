@@ -1,10 +1,7 @@
 package br.com.hackatur.xtudyout.domain;
 
 import com.google.cloud.firestore.DocumentSnapshot;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Collection;
@@ -18,20 +15,15 @@ import java.util.stream.Collectors;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@RequiredArgsConstructor
 public class Pergunta {
 
     public static String child = "pergunta";
 
-    private Long ordem;
     private String documento;
-    private String questao;
-    private List<Resposta> respostas;
-
-    public Pergunta(Long ordem, String questao, List<Resposta> respostas) {
-        this.ordem = ordem;
-        this.questao = questao;
-        this.respostas = respostas;
-    }
+    @NonNull private Long ordem;
+    @NonNull private String questao;
+    @NonNull private List<Resposta> respostas;
 
     public Pergunta(DocumentSnapshot doc) {
         this.documento = doc.getId();

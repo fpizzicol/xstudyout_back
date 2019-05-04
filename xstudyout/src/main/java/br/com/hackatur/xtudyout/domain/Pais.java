@@ -1,10 +1,7 @@
 package br.com.hackatur.xtudyout.domain;
 
 import com.google.cloud.firestore.DocumentSnapshot;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.HashMap;
@@ -16,27 +13,18 @@ import java.util.stream.Collectors;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@RequiredArgsConstructor
 public class Pais {
 
     public static String child = "pais";
 
     private String documento;
-    private String nome;
-    private String continente;
-    private String clima;
-    private String moeda;
-    private String descricao;
-    private List<String> tags;
-
-
-    public Pais(String continente, String nome, String clima, String moeda, String descricao, List<String> tags) {
-        this.continente = continente;
-        this.nome = nome;
-        this.clima = clima;
-        this.moeda = moeda;
-        this.descricao = descricao;
-        this.tags = tags;
-    }
+    @NonNull private String nome;
+    @NonNull private String continente;
+    @NonNull private String clima;
+    @NonNull private String moeda;
+    @NonNull private String descricao;
+    @NonNull private List<String> tags;
 
     public Pais(DocumentSnapshot doc) {
         this.documento = doc.getId();

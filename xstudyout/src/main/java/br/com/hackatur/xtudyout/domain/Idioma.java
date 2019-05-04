@@ -2,10 +2,7 @@ package br.com.hackatur.xtudyout.domain;
 
 import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.HashMap;
@@ -15,18 +12,14 @@ import java.util.Map;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@RequiredArgsConstructor
 public class Idioma {
 
     public static String child = "idioma";
 
-    private String nome;
-    private String bandeira;
+    @NonNull private String nome;
+    @NonNull private String bandeira;
     private String documento;
-
-    public Idioma(String nome, String bandeira) {
-        this.nome = nome;
-        this.bandeira = bandeira;
-    }
 
     public Idioma(DocumentSnapshot doc) {
         this.documento = doc.getId();

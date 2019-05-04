@@ -1,10 +1,7 @@
 package br.com.hackatur.xtudyout.domain;
 
 import com.google.cloud.firestore.DocumentSnapshot;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.HashMap;
@@ -14,20 +11,15 @@ import java.util.Map;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@RequiredArgsConstructor
 public class Avaliacao {
 
     public static String child = "avaliacoes";
 
     private String documento;
-    private String autor;
-    private Double nota;
-    private String comentario;
-
-    public Avaliacao(String autor, Double nota, String comentario) {
-        this.autor = autor;
-        this.nota = nota;
-        this.comentario = comentario;
-    }
+    @NonNull private String autor;
+    @NonNull private Double nota;
+    @NonNull private String comentario;
 
     public Avaliacao(DocumentSnapshot doc) {
         this.documento = doc.getId();

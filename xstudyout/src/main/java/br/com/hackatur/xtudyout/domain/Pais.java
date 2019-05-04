@@ -51,7 +51,7 @@ public class Pais {
     public Map<String, Object> toMap() {
         Map<String, Object> resp = new HashMap<>();
         resp.put("continente", getContinente());
-        resp.put("nome", getContinente());
+        resp.put("nome", getNome());
         resp.put("clima", getClima());
         resp.put("moeda", getMoeda());
         resp.put("descricao", getDescricao());

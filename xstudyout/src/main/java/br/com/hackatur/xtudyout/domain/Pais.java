@@ -21,6 +21,7 @@ public class Pais {
     public static String child = "pais";
 
     private String documento;
+    private String nome;
     private String continente;
     private String clima;
     private String moeda;
@@ -28,8 +29,9 @@ public class Pais {
     private List<String> tags;
 
 
-    public Pais(String continente, String clima, String moeda, String descricao, List<String> tags) {
+    public Pais(String continente, String nome, String clima, String moeda, String descricao, List<String> tags) {
         this.continente = continente;
+        this.nome = nome;
         this.clima = clima;
         this.moeda = moeda;
         this.descricao = descricao;
@@ -38,6 +40,7 @@ public class Pais {
 
     public Pais(DocumentSnapshot doc) {
         this.documento = doc.getId();
+        this.nome = doc.getString("nome");
         this.continente = doc.getString("continente");
         this.clima = doc.getString("clima");
         this.moeda = doc.getString("moeda");
@@ -48,6 +51,7 @@ public class Pais {
     public Map<String, Object> toMap() {
         Map<String, Object> resp = new HashMap<>();
         resp.put("continente", getContinente());
+        resp.put("nome", getContinente());
         resp.put("clima", getClima());
         resp.put("moeda", getMoeda());
         resp.put("descricao", getDescricao());

@@ -5,6 +5,8 @@ import com.google.api.core.ApiFuture
 import com.google.cloud.firestore.DocumentReference
 import com.google.cloud.firestore.Firestore
 import com.google.cloud.firestore.QuerySnapshot
+import com.google.cloud.firestore.SetOptions
+import com.google.cloud.firestore.WriteResult
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Repository
 
@@ -27,17 +29,31 @@ class IdiomaRepository {
     }
 
     List<Idioma> findAll() {
-//        save(new Idioma("Inglês", "https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg"))
-//        save(new Idioma("Francês", "https://upload.wikimedia.org/wikipedia/commons/6/62/Flag_of_France.png"))
 
         ApiFuture<QuerySnapshot> apiFuture = firestore.collection(Idioma.child).get()
-        List<Idioma> resp = new ArrayList<>()
         try {
-            resp = apiFuture.get().getDocuments().collect { new Idioma(it) }
+            return apiFuture.get().getDocuments().collect { new Idioma(it) }
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace()
         }
+        return []
+    }
 
-        return resp
+    Idioma findByDocument(String document) {
+        new Idioma(firestore.collection(Idioma.child).document(document).get().get())
+    }
+
+    Idioma update(String document, Idioma idioma) {
+        firestore.collection(Idioma.child).document(document).update(idioma.toMap()).get()
+        findByDocument(document)
+    }
+
+    Idioma patchUpdate(String document, Map<String, Object> idiomaAtributos) {
+        firestore.collection(Idioma.child).document(document).update(idiomaAtributos).get()
+        findByDocument(document)
+    }
+
+    void delete(String document) {
+        firestore.collection(Idioma.child).document(document).delete().get()
     }
 }

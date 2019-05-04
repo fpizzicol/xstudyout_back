@@ -4,15 +4,11 @@ import br.com.hackatur.xtudyout.domain.Idioma;
 import br.com.hackatur.xtudyout.service.IdiomaService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
 
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
@@ -29,6 +25,12 @@ public class IdiomaController {
         this.idiomaService = idiomaService;
     }
 
+    @ResponseStatus(OK)
+    @GetMapping
+    List<Idioma> getAll() {
+        return idiomaService.getAll();
+    }
+
     @ResponseStatus(CREATED)
     @PostMapping
     Idioma create(@Valid @RequestBody Idioma idioma) {
@@ -36,10 +38,27 @@ public class IdiomaController {
         return idiomaService.create(idioma);
     }
 
-    @ResponseStatus(OK)
-    @GetMapping
-    List<Idioma> getAll() {
-        return idiomaService.getAll();
+    @GetMapping("{document}")
+    Idioma getByDocument(@PathVariable String document) {
+        return idiomaService.getByDocument(document);
     }
 
+    @PutMapping("{document}")
+    Idioma update(
+            @PathVariable String document,
+            @RequestBody Idioma idioma) {
+        return idiomaService.update(document, idioma);
+    }
+
+    @PatchMapping("{document}")
+    Idioma patch(
+            @PathVariable String document,
+            @RequestBody Map<String, Object> idiomaAtributos) {
+        return idiomaService.patch(document, idiomaAtributos);
+    }
+
+    @DeleteMapping("{document}")
+    void delete(@PathVariable String document) {
+        idiomaService.delete(document);
+    }
 }

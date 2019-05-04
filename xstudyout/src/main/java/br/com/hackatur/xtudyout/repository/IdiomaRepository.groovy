@@ -1,16 +1,14 @@
-package br.com.hackatur.xtudyout.repository;
+package br.com.hackatur.xtudyout.repository
 
 import br.com.hackatur.xtudyout.domain.Idioma
 import com.google.api.core.ApiFuture
 import com.google.cloud.firestore.DocumentReference
 import com.google.cloud.firestore.Firestore
 import com.google.cloud.firestore.QuerySnapshot
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Repository
 
-import java.util.Arrays;
-import java.util.List
-import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutionException
 
 @Repository
 class IdiomaRepository {

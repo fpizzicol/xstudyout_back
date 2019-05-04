@@ -20,8 +20,8 @@ public class Acomodacao {
     private String documento;
     @NonNull private String nome;
     @NonNull private String imagem;
-    @NonNull private Date inicio;
-    @NonNull private Date fim;
+    @NonNull private String inicio;
+    @NonNull private String fim;
     @NonNull private Double valor;
     @NonNull private String cidade;
     @NonNull private Pais pais;
@@ -30,8 +30,8 @@ public class Acomodacao {
         this.documento = doc.getId();
         this.nome = doc.getString("nome");
         this.imagem = doc.getString("imagem");
-        this.inicio = doc.getDate("inicio");
-        this.fim = doc.getDate("fim");
+        this.inicio = doc.getString("inicio");
+        this.fim = doc.getString("fim");
         this.valor = doc.getDouble("valor");
         this.cidade = doc.getString("cidade");
         this.pais = new Pais((Map) doc.get("pais"));

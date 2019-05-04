@@ -47,6 +47,7 @@ class EscolaRepository {
     }
 
     Escola patchUpdate(String document, Map<String, Object> escolaAtributos) {
+        escolaAtributos[]
         firestore.collection(Escola.child).document(document).update(escolaAtributos).get()
         findByDocument(document)
     }

@@ -19,6 +19,7 @@ public class Escola {
     public static String child = "escola";
 
     private String documento;
+    private String nome;
     @NonNull private Pais pais;
     @NonNull private String cidade;
     @NonNull private String endereco;
@@ -35,6 +36,7 @@ public class Escola {
 
     public Escola(DocumentSnapshot doc) {
         this.documento = doc.getId();
+        this.nome = doc.getString("nome");
         this.cidade = doc.getString("cidade");
         this.endereco = doc.getString("endereco");
         this.pais = new Pais((Map) doc.get("pais"));
@@ -52,6 +54,7 @@ public class Escola {
 
     public Map<String, Object> toMap() {
         Map<String, Object> resp = new HashMap<>();
+        resp.put("nome", getNome());
         resp.put("pais", getPais().toMap());
         resp.put("cidade", getCidade());
         resp.put("endereco", getEndereco());

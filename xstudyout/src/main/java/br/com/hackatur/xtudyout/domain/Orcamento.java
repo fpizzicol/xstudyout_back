@@ -1,15 +1,10 @@
 package br.com.hackatur.xtudyout.domain;
 
-import com.google.cloud.Timestamp;
 import com.google.cloud.firestore.DocumentSnapshot;
 import lombok.*;
 import org.apache.commons.lang3.StringUtils;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Getter
@@ -29,7 +24,7 @@ public class Orcamento {
     @NonNull private Double valorMatricula;
     @NonNull private Integer periodo;
     @NonNull private Double valorMoradia;
-    @NonNull private Date dataOrcamento;
+    @NonNull private String dataOrcamento;
 
     public Orcamento(DocumentSnapshot doc) {
         this.documento = doc.getId();
@@ -39,7 +34,7 @@ public class Orcamento {
         this.valorMatricula = doc.getDouble("valorMatricula");
         this.periodo = doc.getDouble("periodo").intValue();
         this.valorMoradia = doc.getDouble("valorMoradia");
-        this.dataOrcamento = doc.getDate("dataOrcamento");
+        this.dataOrcamento = doc.getString("dataOrcamento");
         this.valorServicos = doc.getDouble("valorServicos");
     }
 
@@ -50,7 +45,7 @@ public class Orcamento {
         this.valorMatricula = (Double) map.get("valorMatricula");
         this.periodo = ((Long) map.get("periodo")).intValue();
         this.valorMoradia = (Double) map.get("valorMoradia");
-        this.dataOrcamento = ((Timestamp) map.get("dataOrcamento")).toDate();
+        this.dataOrcamento = map.get("dataOrcamento").toString();
         this.valorServicos = (Double) map.get("valorServicos");
     }
 

@@ -22,29 +22,33 @@ public class Pergunta {
 
     public static String child = "pergunta";
 
+    private Long ordem;
     private String documento;
     private String questao;
     private List<Resposta> respostas;
 
-    public Pergunta(String questao, List<Resposta> respostas) {
+    public Pergunta(Long ordem, String questao, List<Resposta> respostas) {
+        this.ordem = ordem;
         this.questao = questao;
         this.respostas = respostas;
     }
 
     public Pergunta(DocumentSnapshot doc) {
         this.documento = doc.getId();
-        this.questao = doc.getString("bandeira");
+        this.ordem = doc.getLong("ordem");
+        this.questao = doc.getString("questao");
         this.respostas = (List<Resposta>) doc.get("respostas");
     }
 
     public Map<String, Object> toMap() {
         Map<String, Object> resp = new HashMap<>();
-        resp.put("questao", getQuestao());
+        resp.put("ordem", ordem);
+        resp.put("questao", questao);
         List<Map<String, Object>> respostasMap = getRespostas().stream().map(Resposta::toMap).collect(Collectors.toList());
         resp.put("respostas", respostasMap);
 
-        if (StringUtils.isNotBlank(getDocumento())) {
-            resp.put("documento", getDocumento());
+        if (StringUtils.isNotBlank(documento)) {
+            resp.put("documento", documento);
         }
 
         return resp;

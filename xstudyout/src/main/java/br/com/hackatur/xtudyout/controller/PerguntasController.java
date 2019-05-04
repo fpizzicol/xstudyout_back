@@ -1,5 +1,6 @@
 package br.com.hackatur.xtudyout.controller;
 
+import br.com.hackatur.xtudyout.domain.Idioma;
 import br.com.hackatur.xtudyout.domain.Pergunta;
 import br.com.hackatur.xtudyout.service.PerguntasService;
 import org.slf4j.Logger;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
 
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
@@ -24,6 +26,12 @@ public class PerguntasController {
         this.perguntasService = perguntasService;
     }
 
+    @ResponseStatus(OK)
+    @GetMapping
+    List<Pergunta> getAll() {
+        return perguntasService.getAll();
+    }
+
     @ResponseStatus(CREATED)
     @PostMapping
     Pergunta create(@Valid @RequestBody Pergunta pergunta) {
@@ -31,10 +39,28 @@ public class PerguntasController {
         return perguntasService.create(pergunta);
     }
 
-    @ResponseStatus(OK)
-    @GetMapping
-    List<Pergunta> getAll() {
-        return perguntasService.getAll();
+    @GetMapping("{document}")
+    Pergunta getByDocument(@PathVariable String document) {
+        return perguntasService.getByDocument(document);
     }
 
+
+    @PutMapping("{document}")
+    Pergunta update(
+            @PathVariable String document,
+            @RequestBody Pergunta pergunta) {
+        return perguntasService.update(document, pergunta);
+    }
+
+    @PatchMapping("{document}")
+    Pergunta patch(
+            @PathVariable String document,
+            @RequestBody Map<String, Object> perguntaAtributos) {
+        return perguntasService.patch(document, perguntaAtributos);
+    }
+
+    @DeleteMapping("{document}")
+    void delete(@PathVariable String document) {
+        perguntasService.delete(document);
+    }
 }

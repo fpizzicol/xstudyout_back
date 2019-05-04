@@ -23,6 +23,7 @@ public class Acomodacao {
     @NonNull private Date inicio;
     @NonNull private Date fim;
     @NonNull private Double valor;
+    @NonNull private String cidade;
     @NonNull private Pais pais;
 
     public Acomodacao(DocumentSnapshot doc) {
@@ -32,6 +33,7 @@ public class Acomodacao {
         this.inicio = doc.getDate("inicio");
         this.fim = doc.getDate("fim");
         this.valor = doc.getDouble("valor");
+        this.cidade = doc.getString("cidade");
         this.pais = new Pais((Map) doc.get("pais"));
     }
 
@@ -42,6 +44,7 @@ public class Acomodacao {
         resp.put("inicio", getInicio());
         resp.put("fim", getFim());
         resp.put("valor", getValor());
+        resp.put("cidade", getCidade());
         resp.put("pais", getPais().toMap());
 
         if(StringUtils.isNotBlank(getDocumento())){
@@ -50,7 +53,4 @@ public class Acomodacao {
 
         return resp;
     }
-
-
-
 }

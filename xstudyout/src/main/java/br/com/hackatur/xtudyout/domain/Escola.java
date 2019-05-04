@@ -34,6 +34,7 @@ public class Escola {
     public Escola(DocumentSnapshot doc) {
         this.documento = doc.getId();
         this.endereco = (Endereco) doc.get("endereco");
+        this.orcamento = (Orcamento) doc.get("orcamento");
         this.logo = doc.getString("logo");
         this.descricao = doc.getString("descricao");
         this.curso = doc.getString("curso");
@@ -48,6 +49,7 @@ public class Escola {
     public Map<String, Object> toMap() {
         Map<String, Object> resp = new HashMap<>();
         resp.put("endereco", getEndereco().toMap());
+        resp.put("orcamento", getOrcamento().toMap());
         resp.put("logo", getLogo());
         resp.put("descricao", getDescricao());
         resp.put("curso", getCurso());

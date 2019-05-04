@@ -22,8 +22,9 @@ public class Orcamento {
 
     private String documento;
     @NonNull private Double valorTotal;
+    @NonNull private Double valorCurso;
     @NonNull private Double taxas;
-    @NonNull private String curso;
+    @NonNull private Double servicos;
     @NonNull private Double valorMatricula;
     @NonNull private Integer periodo;
     @NonNull private Double valorMoradia;
@@ -32,8 +33,8 @@ public class Orcamento {
     public Orcamento(DocumentSnapshot doc) {
         this.documento = doc.getId();
         this.valorTotal = doc.getDouble("valorTotal");
+        this.valorCurso = doc.getDouble("valorCurso");
         this.taxas = doc.getDouble("taxas");
-        this.curso = doc.getString("curso");
         this.valorMatricula = doc.getDouble("valorMatricula");
         this.periodo = doc.getDouble("periodo").intValue();
         this.valorMoradia = doc.getDouble("valorMoradia");
@@ -43,8 +44,8 @@ public class Orcamento {
     public Map<String, Object> toMap() {
         Map<String, Object> resp = new HashMap<>();
         resp.put("valorTotal" , getValorTotal());
+        resp.put("valorCurso" , getValorCurso());
         resp.put("taxas" , getTaxas());
-        resp.put("curso" , getCurso());
         resp.put("valorMatricula" , getValorMatricula());
         resp.put("periodo" , getPeriodo());
         resp.put("valorMoradia" , getValorMoradia());

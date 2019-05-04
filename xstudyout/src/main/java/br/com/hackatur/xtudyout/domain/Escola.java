@@ -22,11 +22,14 @@ public class Escola {
     @NonNull private Endereco endereco;
     @NonNull private String logo;
     @NonNull private String descricao;
-    @NonNull private String curso;
-    @NonNull private String periodo;
     @NonNull private Boolean moradia;
     @NonNull private List<Avaliacao> avaliacoes;
     @NonNull private List<String> tags;
+    @NonNull private String curso;
+    @NonNull private String periodo;
+    @NonNull private String nivel;
+    @NonNull private String duracao;
+    @NonNull private Orcamento orcamento;
 
     public Escola(DocumentSnapshot doc) {
         this.documento = doc.getId();
@@ -35,6 +38,8 @@ public class Escola {
         this.descricao = doc.getString("descricao");
         this.curso = doc.getString("curso");
         this.periodo = doc.getString("periodo");
+        this.nivel = doc.getString("nivel");
+        this.duracao = doc.getString("duracao");
         this.moradia = doc.getBoolean("moradia");
         this.avaliacoes = (List<Avaliacao>) doc.get("avaliacoes");
         this.tags = (List<String>) doc.get("tags");
@@ -47,6 +52,8 @@ public class Escola {
         resp.put("descricao", getDescricao());
         resp.put("curso", getCurso());
         resp.put("periodo", getPeriodo());
+        resp.put("nivel", getNivel());
+        resp.put("duracao", getDuracao());
         resp.put("moradia", getMoradia());
         resp.put("avaliacoes", getAvaliacoes().stream().map(Avaliacao::toMap).collect(Collectors.toList()));
         resp.put("tags", getTags());

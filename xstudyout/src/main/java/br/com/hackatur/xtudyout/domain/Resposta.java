@@ -10,12 +10,10 @@ import java.util.Map;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
-@RequiredArgsConstructor
 public class Resposta {
 
-    @NonNull private String resposta;
-    @NonNull private String tag;
+    private String resposta;
+    private String tag;
 
     public Map<String, Object> toMap(){
         Map<String, Object> resp = new HashMap<>();
